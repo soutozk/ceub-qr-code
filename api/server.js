@@ -3,14 +3,11 @@ const puppeteer = require("puppeteer-core");
 
 module.exports = async (req, res) => {
   let browser;
-
   try {
     browser = await puppeteer.launch({
       args: chromium.args,
-      defaultViewport: chromium.defaultViewport,
       executablePath: await chromium.executablePath,
       headless: chromium.headless,
-      ignoreHTTPSErrors: true,
     });
 
     const page = await browser.newPage();
@@ -26,12 +23,10 @@ module.exports = async (req, res) => {
       return await r.json();
     });
 
-    if (!qrData || !qrData.QRCode) throw new Error("QR Code não retornado");
+    if (!qrData?.QRCode) throw new Error("QR Code não retornado");
 
     res.status(200).json({ qrcode: qrData.QRCode });
-
   } catch (err) {
-    console.error(err);
     res.status(500).json({ error: err.message });
   } finally {
     if (browser) await browser.close();

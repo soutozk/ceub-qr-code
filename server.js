@@ -19,14 +19,16 @@ app.get('/qrcode', async (req, res) => {
     const page = await browser.newPage();
     await page.goto('https://ea.uniceub.br/', { waitUntil: 'networkidle2' });
 
+    // login
     await page.type('#coAcesso', process.env.CEUB_USER);
     await page.type('#coSenha', process.env.CEUB_PASS);
     await page.click('#btn-login');
     await page.waitForNavigation({ waitUntil: 'networkidle2' });
 
+    // pegar QR code
     const qrData = await page.evaluate(async () => {
-      const r = await fetch('/Home/GetQrCode');
-      return await r.json();
+      const response = await fetch('/Home/GetQrCode');
+      return await response.json();
     });
 
     if (!qrData || !qrData.QRCode) throw new Error('QR Code não retornado');

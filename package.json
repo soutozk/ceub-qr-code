@@ -1,10 +1,9 @@
 {
   "name": "ceub-qr-vercel",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "api/server.js",
   "dependencies": {
     "puppeteer-core": "^10.1.0",
     "chrome-aws-lambda": "^10.1.0"
   }
 }
-

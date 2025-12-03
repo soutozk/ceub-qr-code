@@ -1,5 +1,5 @@
 {
-  "name": "qr-api",
+  "name": "ceub-qr-api",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "express": "^4.18.2",
-    "puppeteer": "^22.0.0"
+    "puppeteer-core": "^22.0.0",
+    "chrome-aws-lambda": "^10.0.0"
   }
 }
